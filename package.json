@@ -1,9 +1,9 @@
 {
-  "name": "@worldofsoftware/template",
+  "name": "@worldofsoftware/common",
   "version": "0.0.0",
   "license": "AGPL-3.0-only",
   "author": "Scraps",
-  "private": true,
+  "private": false,
   "type": "module",
   "engines": {
     "node": ">=20.11.0"
