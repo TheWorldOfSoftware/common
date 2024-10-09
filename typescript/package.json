@@ -1,5 +1,5 @@
 {
-  "name": "@worldofsoftware/typescript-advanced-type-helpers",
+  "name": "@worldofsoftware/typescript-helpers",
   "version": "0.0.0",
   "license": "AGPL-3.0-only",
   "author": "Scraps",
@@ -14,5 +14,7 @@
   "exports": {
     ".": "./index.ts"
   },
-  "scripts": {}
+  "scripts": {
+    "build": "tsc"
+  }
 }
