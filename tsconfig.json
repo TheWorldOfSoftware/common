@@ -1,6 +1,9 @@
 {
   "extends": "@worldofsoftware/typescript-config",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "${configDir}/dist",
+    "declaration": true,
+    "declarationDir": "${configDir}/dist/types",
+    "declarationMap": true
   }
 }

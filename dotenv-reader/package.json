@@ -1,0 +1,29 @@
+{
+  "name": "@worldofsoftware/dotenv-reader",
+  "version": "0.0.0",
+  "license": "AGPL-3.0-only",
+  "author": "Scraps",
+  "private": false,
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}
