@@ -11,6 +11,6 @@ const get = (key: string): string => {
 };
 
 export default {
-  loadEnvFile: dotenv.config,
+  loadEnv: dotenv.config,
   get
 };
