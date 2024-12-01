@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint --fix",
     "format": "prettier . --write",
-    "build": "pnpm --filter \"**/*\" run build"
+    "build": "pnpm --filter \"./**/*\" run build"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
