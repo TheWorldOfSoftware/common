@@ -3,9 +3,9 @@ import dotenv, {
   type DotenvParseOutput,
 } from "dotenv";
 
-type EnvSchema = Record<PropertyKey, unknown> & {
+interface EnvSchema {
   parse: (output: Readonly<DotenvParseOutput | undefined>) => void;
-};
+}
 
 function loadEnv(options?: DotenvConfigOptions): DotenvParseOutput | undefined;
 function loadEnv(
