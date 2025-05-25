@@ -15,15 +15,17 @@ const configurations = [
       "@typescript-eslint/prefer-readonly-parameter-types": [
         "error",
         {
-          allow: {
-            from: "package",
-            package: "dotenv",
-            type: "DotenvConfigOptions",
-          },
-        },
-      ],
-    },
-  },
+          allow: [
+            {
+              from: "package",
+              name: "DotenvConfigOptions",
+              package: "dotenv"
+            }
+          ]
+        }
+      ]
+    }
+  }
 ];
 
 export default configurations;
