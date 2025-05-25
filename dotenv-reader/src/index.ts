@@ -1,16 +1,38 @@
-import dotenv from "dotenv";
+import dotenv, {
+  type DotenvConfigOptions,
+  type DotenvParseOutput,
+} from "dotenv";
 
-const get = (key: string): string => {
-  if (!(key in process.env) || typeof process.env[key] !== "string") {
-    throw new Error(
-      `Key ${key} was not found in the env file. Did you spell it correctly?`
-    );
-  }
-
-  return process.env[key];
+type EnvSchema = Record<PropertyKey, unknown> & {
+  parse: (output: Readonly<DotenvParseOutput | undefined>) => void;
 };
 
+function loadEnv(options?: DotenvConfigOptions): DotenvParseOutput | undefined;
+function loadEnv(
+  schema: EnvSchema,
+  options?: DotenvConfigOptions,
+): DotenvParseOutput | undefined;
+function loadEnv(
+  optionsOrSchema?: Readonly<EnvSchema> | DotenvConfigOptions,
+  options?: DotenvConfigOptions,
+): DotenvParseOutput | undefined {
+  const dotenvOptions =
+    optionsOrSchema === undefined || !("parse" in optionsOrSchema)
+      ? optionsOrSchema
+      : options;
+  const schema =
+    optionsOrSchema === undefined || "parse" in optionsOrSchema
+      ? optionsOrSchema
+      : undefined;
+
+  const result = dotenv.config(dotenvOptions);
+  if (result.error) {
+    throw new Error(`Failed to load .env file: ${result.error.message}`);
+  }
+  schema?.parse(result.parsed);
+  return result.parsed;
+}
+
 export default {
-  loadEnv: dotenv.config,
-  get
+  load: loadEnv,
 };

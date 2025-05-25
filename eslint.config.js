@@ -8,7 +8,22 @@ const gitIgnorePath = path.resolve(import.meta.dirname, ".gitignore");
 const configurations = [
   includeIgnoreFile(gitIgnorePath),
   eslint,
-  eslintTypescript
+  eslintTypescript,
+  {
+    files: ["dotenv-reader/src/index.ts"],
+    rules: {
+      "@typescript-eslint/prefer-readonly-parameter-types": [
+        "error",
+        {
+          allow: {
+            from: "package",
+            package: "dotenv",
+            type: "DotenvConfigOptions",
+          },
+        },
+      ],
+    },
+  },
 ];
 
 export default configurations;
