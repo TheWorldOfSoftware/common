@@ -1,21 +1,22 @@
 import dotenv, {
   type DotenvConfigOptions,
-  type DotenvParseOutput,
+  type DotenvParseOutput
 } from "dotenv";
 
 interface EnvSchema {
   parse: (output: Readonly<DotenvParseOutput | undefined>) => void;
 }
 
-function loadEnv(options?: DotenvConfigOptions): DotenvParseOutput | undefined;
-function loadEnv(
-  schema: EnvSchema,
-  options?: DotenvConfigOptions,
-): DotenvParseOutput | undefined;
-function loadEnv(
+const loadEnv: {
+  (options?: DotenvConfigOptions): DotenvParseOutput | undefined;
+  (
+    schema: Readonly<EnvSchema>,
+    options?: DotenvConfigOptions
+  ): DotenvParseOutput | undefined;
+} = (
   optionsOrSchema?: Readonly<EnvSchema> | DotenvConfigOptions,
-  options?: DotenvConfigOptions,
-): DotenvParseOutput | undefined {
+  options?: DotenvConfigOptions
+): DotenvParseOutput | undefined => {
   const dotenvOptions =
     optionsOrSchema === undefined || !("parse" in optionsOrSchema)
       ? optionsOrSchema
@@ -31,8 +32,8 @@ function loadEnv(
   }
   schema?.parse(result.parsed);
   return result.parsed;
-}
+};
 
 export default {
-  load: loadEnv,
+  load: loadEnv
 };
